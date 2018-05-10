@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/province-heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/year-list"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/orders_by_province"
+        android:textSize="25sp"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/year-heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/orders_by_year"
+        android:textSize="25sp"
+        android:typeface="sans"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recent_heading"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/year-heading"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_heading"
+        android:textSize="20sp"
+        android:text="@string/date"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_below="@id/recent_heading"
+        android:minWidth="125dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/province_subheading"
+        android:textSize="20sp"
+        android:text="@string/province"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_below="@id/recent_heading"
+        android:layout_toRightOf="@+id/date_heading"
+        android:minWidth="150dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/price_headings"
+        android:textSize="20sp"
+        android:text="@string/price"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="28dp"
+        android:layout_below="@id/recent_heading"
+        android:layout_toRightOf="@+id/province_subheading"
+        android:minWidth="125dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/year-list"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/date_heading"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/province-orders"
+        android:layout_below="@+id/province-heading"
+        android:layout_marginBottom="10dp">
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

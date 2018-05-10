@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Order Summaries</string>
+    <string name="orders_by_province">Orders By Province</string>
+    <string name="orders_by_year">Orders by Year</string>
+    <string name="refresh_button">Refresh</string>
+    <string name="date">Date</string>
+    <string name="province">Province</string>
+    <string name="price">Price</string>
+    <string name="title_activity_province">ProvinceActivity</string>
+</resources>
