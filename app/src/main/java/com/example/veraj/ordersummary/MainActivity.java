@@ -103,7 +103,10 @@ public class MainActivity extends AppCompatActivity {
                             sorted_items.add(new SortedOrders());
                             sorted_items.get(i).setTotal_price(jsonObj.getString("total_price"));
                             sorted_items.get(i).setDate(jsonObj.getString("created_at"));
-
+                            sorted_items.get(i).setFinancial_status(jsonObj.getString("financial_status"));
+                            if(sorted_items.get(i).getFinancial_status().equals("paid")){
+                                sorted_items.get(i).setFinancial_status("Paid");
+                            }
                             sortedOrders[i] = new SortedOrders();
                             sortedOrders[i].setDate(jsonObj.getString("created_at"));
                             sortedOrders[i].setTotal_price(jsonObj.getString("total_price"));
@@ -114,10 +117,11 @@ public class MainActivity extends AppCompatActivity {
                             count++;
                             sortedOrders[i].setProvince_shippedto(jsonObj.getJSONObject("billing_address").getString("province"));
                             sorted_items.get(i).setProvince_shippedto(jsonObj.getJSONObject("billing_address").getString("province"));
-
+                            sorted_items.get(i).setfullName(jsonObj.getJSONObject("customer").getString("first_name") + " "+ jsonObj.getJSONObject("customer").getString("last_name"));
                         }
                         else {
                             mNames.add("Unknown Location. ID: " + jsonObj.getString("id"));
+                            sorted_items.get(i).setfullName("Unknown");
                             sortedOrders[i].setProvince_shippedto("Unknown Location. ID: " + jsonObj.getString("id"));
                             sorted_items.get(i).setProvince_shippedto("Unknown Location. ID: " + jsonObj.getString("id"));
 
@@ -192,10 +196,6 @@ public class MainActivity extends AppCompatActivity {
         yearlyView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         yearlyView.setAdapter(yearAdapterClass);
         yearlyView.setLayoutManager(new LinearLayoutManager(this));
-//        AdapterClass adapterClass = new AdapterClass(this,tenYearNames,mImageUrls);
-//        yearlyView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-//        yearlyView.setAdapter(adapterClass);
-//        yearlyView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

@@ -26,7 +26,7 @@ public class ProvinceActivity extends AppCompatActivity{
     private static final String TAG = "com.example.veraj.ordersummary";
     private ArrayList<SortedOrders> sortedOrders;
     private ArrayList<String> mNames;
-
+    private ArrayList<String> headingnames = new ArrayList<String>();
 
     private ArrayList<String> provincelist = new ArrayList<>();
     int order_count = 1;
@@ -42,9 +42,7 @@ public class ProvinceActivity extends AppCompatActivity{
         sortedOrders= (ArrayList<SortedOrders>)getIntent().getSerializableExtra(KEY);
         mNames = (ArrayList<String>)getIntent().getSerializableExtra(KEY2);
 
-        for (int i = 0; i<sortedOrders.size(); i++){
-//            provincelist.add(sortedOrders.get(i).getProvince_shippedto());
-        }
+
         Collections.sort(sortedOrders, new Comparator<SortedOrders>() {
             public int compare(SortedOrders v1, SortedOrders v2) {
                 return v1.getProvince_shippedto().compareTo(v2.getProvince_shippedto());
@@ -55,24 +53,15 @@ public class ProvinceActivity extends AppCompatActivity{
             if (mNames.get(i).equals(mNames.get(i + 1))) {
                 order_count++;
             } else {
-                group += mNames.get(i) + "\n\n\n";
+//                group += mNames.get(i) + "\n\n\n";
+                headingnames.add(mNames.get(i));
                 for (int j = i; j> i -order_count; j--){
-                    group = group + (sortedOrders.get(j).getDate() + "                  " + sortedOrders.get(j).getTotal_price() + "                   " + "\n \n");
+                    group += (sortedOrders.get(i).getfullName()+ "                  " +  "                   "+ sortedOrders.get(j).getTotal_price() + System.lineSeparator()+ "\n" + sortedOrders.get(j).getDate() +" | "+  sortedOrders.get(i).getFinancial_status() + System.lineSeparator()+ System.lineSeparator()+ System.lineSeparator());
 
                 }
                 provincelist.add(group);
                 group = "";
-//                countedNames.add(order_count + " orders from " + sortedOrders.get(i));
-//                for (int j = 0; j < order_count; j++){
-//                    LayoutParams lparams = new LayoutParams(
-//                            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-//                    TextView tv = new TextView(findViewById(R.id.order_list).getContext());
-//                    tv.setLayoutParams(lparams);
-//                    tv.setText("test");
-//                    LinearLayout layout = (LinearLayout) findViewById(R.id.order_list);
-//                    layout.addView(tv);
-//
-//                }
+
                 order_count = 1;
             }
         }
@@ -86,7 +75,7 @@ public class ProvinceActivity extends AppCompatActivity{
     private void fillRecyclerView(){
         Log.d(TAG, "fillRecyclerView: recyclerview.");
         RecyclerView recyclerView = findViewById(R.id.recycle_view);
-        AdapterClass adapter = new AdapterClass(this, provincelist);
+        ProvinceAdapterClass adapter = new ProvinceAdapterClass(this, provincelist, headingnames);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
