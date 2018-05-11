@@ -47,7 +47,7 @@ public class ProvinceActivity extends AppCompatActivity{
             } else {
                 headingnames.add(mNames.get(i));
                 for (int j = i; j> i -order_count; j--){
-                    group += (sortedOrders.get(i).getfullName()+ "                                              "+ sortedOrders.get(j).getTotal_price() + System.lineSeparator()+ "\n" + sortedOrders.get(j).getDate() +" | "+  sortedOrders.get(i).getFinancial_status() + System.lineSeparator()+ System.lineSeparator()+ System.lineSeparator());
+                    group += (sortedOrders.get(i).getfullName()+ System.lineSeparator()+ "\n" + sortedOrders.get(j).getDate() +" | "+  sortedOrders.get(i).getFinancial_status() + " | " + sortedOrders.get(j).getTotal_price() + System.lineSeparator()+ System.lineSeparator()+ System.lineSeparator());
 
                 }
                 provincelist.add(group);
