@@ -18,7 +18,7 @@ public class ProvinceActivity extends AppCompatActivity{
     public static final String KEY2 = "002";
     private static final String TAG = "com.example.veraj.ordersummary";
 
-    private ArrayList<SortedOrders> sortedOrders;
+    private ArrayList<Order> sortedOrders;
     private ArrayList<String> mNames;
     private ArrayList<String> headingnames = new ArrayList<String>();
     private ArrayList<String> provincelist = new ArrayList<>();
@@ -32,11 +32,11 @@ public class ProvinceActivity extends AppCompatActivity{
         setContentView(R.layout.activity_province);
         String group ="";
         Intent intent = getIntent();
-        sortedOrders= (ArrayList<SortedOrders>)getIntent().getSerializableExtra(KEY);
+        sortedOrders= (ArrayList<Order>)getIntent().getSerializableExtra(KEY);
         mNames = (ArrayList<String>)getIntent().getSerializableExtra(KEY2);
 
-        Collections.sort(sortedOrders, new Comparator<SortedOrders>() {
-            public int compare(SortedOrders v1, SortedOrders v2) {
+        Collections.sort(sortedOrders, new Comparator<Order>() {
+            public int compare(Order v1, Order v2) {
                 return v1.getProvince_shippedto().compareTo(v2.getProvince_shippedto());
             }
         });

@@ -1,6 +1,6 @@
 package com.example.veraj.ordersummary;
 
-public class SortedOrders implements java.io.Serializable {
+public class Order implements java.io.Serializable {
     private String date;
     private String total_price;
     private String province;

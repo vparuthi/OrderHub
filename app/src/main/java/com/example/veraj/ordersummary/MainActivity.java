@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         heading = findViewById(R.id.year_heading);
         province_heading = findViewById(R.id.province_heading);
-        final ArrayList<SortedOrders> sortedOrders;
+        final ArrayList<Order> sortedOrders;
 
         mQueue = Volley.newRequestQueue(this);
         sortedOrders = jsonParse();
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private ArrayList<SortedOrders> jsonParse() {
-        final ArrayList<SortedOrders> sortedOrders = new ArrayList<>();
+    private ArrayList<Order> jsonParse() {
+        final ArrayList<Order> sortedOrders = new ArrayList<>();
         String url = "https://shopicruit.myshopify.com/admin/orders.json?page=1&access_token=c32313df0d0ef512ca64d5b336a0d7c6";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                             number_of_orders.setText("Total orders in 2017:    "+ yearly_count);
                         }
                         if(yearly_count>0){ //adding data to objects
-                            sortedOrders.add(new SortedOrders());
+                            sortedOrders.add(new Order());
                             sortedOrders.get(i).setTotal_price("$"+jsonObj.getString("total_price"));
                             sortedOrders.get(i).setDate(jsonObj.getString("created_at"));
                             sortedOrders.get(i).setFinancial_status(jsonObj.getString("financial_status"));
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
                         sortedOrders.get(i).setDate(sortedOrders.get(i).getDate().substring(0, Math.min(sortedOrders.get(i).getDate().length(), 10)));
 
                     }
-                    Collections.sort(sortedOrders, new Comparator<SortedOrders>() {
-                        public int compare(SortedOrders v1, SortedOrders v2) { //sort the orders by most recent
+                    Collections.sort(sortedOrders, new Comparator<Order>() {
+                        public int compare(Order v1, Order v2) { //sort the orders by most recent
                             return v1.getDate().compareTo(v2.getDate());
                         }
                     });
